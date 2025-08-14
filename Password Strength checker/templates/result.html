@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; padding: 50px; text-align: center; }
+        .box { background: #fff; padding: 20px; border-radius: 8px; display: inline-block; }
+        .score { font-size: 1.2em; font-weight: bold; }
+        .tips { text-align: left; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Strength Result</h1>
+        <p><strong>Password:</strong> {{ "*" * password|length }}</p>
+        <p class="score">Score: {{ result.score }} / 100</p>
+        <p>Rating: {{ result.label }}</p>
+        <p>Entropy: {{ result.entropy }} bits</p>
+        
+        {% if result.tips %}
+        <div class="tips">
+            <h3>Suggestions to Improve:</h3>
+            <ul>
+                {% for tip in result.tips %}
+                    <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <p>✅ Your password looks strong!</p>
+        {% endif %}
+
+        <br>
+        <a href="/">Check Another</a>
+    </div>
+</body>
+</html>
